@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Tarefas</title>
+</head>
+<body>
+  <center>
+  <h1>Lista de Tarefas</h1>
+  <form action="#" method="post">
+    <div>
+        <label for="newitem">Adicione uma tarefa nova</label>
+        <input type="text" name="tarefa" id="tarefa" placeholder="digite a tarefa ..." />
+        <input type="submit" value="Cadastrar" />
+    </div>
+  </form>
+  <ul id="lista"></ul>
+
+  <script>
+	var caixa = document.querySelector( '#lista' ), form = document.querySelector( 'form' ), tarefa = document.querySelector( '#tarefa' );
+    
+	form.addEventListener( 'submit', 
+		function( ev ) {
+			var texto = tarefa.value;
+			if ( texto !== '' ) {
+				caixa.innerHTML += '<li>' + texto + '</li>';
+				tarefa.value = '';
+				tarefa.focus();
+			}
+			ev.preventDefault();
+		}, 
+		false
+	);
+
+	caixa.addEventListener( 'click', 
+		function( ev ) {
+			var t = ev.target;
+			if ( t.tagName === 'LI' ) {
+				t.parentNode.removeChild( t );
+			};
+			ev.preventDefault();
+		}, 
+		false
+	);
+
+</script>
+</body>
+</html>
